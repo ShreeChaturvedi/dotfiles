@@ -1,0 +1,163 @@
+"$schema" = "https://starship.rs/config-schema.json"
+
+palette = "charcoal_exec"
+add_newline = true
+scan_timeout = 20
+command_timeout = 500
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$git_state\
+$direnv\
+$python\
+$nodejs\
+$bun\
+$golang\
+$fill\
+$sudo\
+$cmd_duration\
+$status\
+$time\
+$battery\
+$line_break\
+$character"""
+
+[palettes.charcoal_exec]
+base = "#0c0c0c"
+surface = "#151515"
+overlay = "#1c1c1c"
+text = "#e6e4e1"
+subtle = "#8a9aa5"
+green = "#73c991"
+amber = "#f6c177"
+violet = "#c4b5fd"
+orange = "#f39660"
+red = "#ff7b72"
+
+[fill]
+symbol = " "
+
+[character]
+success_symbol = "[\\$](bold green) "
+error_symbol = "[\\$](bold red) "
+vimcmd_symbol = "[\\$](bold violet) "
+vimcmd_visual_symbol = "[\\$](bold amber) "
+vimcmd_replace_symbol = "[\\$](bold orange) "
+vimcmd_replace_one_symbol = "[\\$](bold orange) "
+
+[username]
+show_always = false
+style_user = "bold fg:violet bg:overlay"
+style_root = "bold fg:red bg:overlay"
+format = "[](fg:overlay)[  $user ]($style)"
+
+[hostname]
+ssh_only = true
+style = "bold fg:amber bg:overlay"
+format = "[@$hostname ]($style)[](fg:overlay) "
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+truncation_symbol = "…/"
+home_symbol = "~"
+read_only = " 󰌾"
+style = "bold fg:text bg:surface"
+format = "[](fg:surface)[ 󰉋 $path$read_only ]($style)[](fg:surface)"
+
+[git_branch]
+symbol = ""
+style = "bold fg:green bg:overlay"
+format = " [](fg:overlay)[ $symbol $branch ]($style)[](fg:overlay)"
+
+[git_status]
+style = "bold fg:amber bg:overlay"
+format = "([](fg:overlay)[ $all_status$ahead_behind ]($style)[](fg:overlay))"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+conflicted = "=${count}"
+deleted = "✕${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+modified = "!${count}"
+renamed = "»${count}"
+staged = "+${count}"
+stashed = "*${count}"
+untracked = "?${count}"
+up_to_date = "✓"
+
+[git_state]
+style = "bold fg:orange bg:overlay"
+format = "([](fg:overlay)[ $state($progress_current/$progress_total) ]($style)[](fg:overlay))"
+
+[direnv]
+disabled = false
+symbol = "󱄅 "
+style = "bold fg:violet bg:overlay"
+format = "([](fg:overlay)[ $symbol$allowed ]($style)[](fg:overlay))"
+allowed_msg = "env"
+not_allowed_msg = "blocked"
+loaded_msg = "env"
+unloaded_msg = "pending"
+
+[python]
+symbol = " "
+style = "bold fg:violet bg:overlay"
+format = "([](fg:overlay)[ $symbol$virtualenv ]($style)[](fg:overlay))"
+
+[nodejs]
+symbol = " "
+style = "bold fg:green bg:overlay"
+format = "([](fg:overlay)[ $symbol$version ]($style)[](fg:overlay))"
+
+[bun]
+symbol = " "
+style = "bold fg:amber bg:overlay"
+format = "([](fg:overlay)[ $symbol$version ]($style)[](fg:overlay))"
+
+[golang]
+symbol = " "
+style = "bold fg:green bg:overlay"
+format = "([](fg:overlay)[ $symbol$version ]($style)[](fg:overlay))"
+
+[sudo]
+disabled = false
+symbol = "󰌾 "
+style = "bold fg:orange bg:overlay"
+format = "[](fg:overlay)[ $symbol ]($style)[](fg:overlay)"
+
+[cmd_duration]
+min_time = 1500
+style = "bold fg:amber bg:overlay"
+format = "[](fg:overlay)[ 󱑂 $duration ]($style)[](fg:overlay)"
+
+[status]
+disabled = false
+style = "bold fg:base bg:red"
+format = "[](fg:red)[ ✕ $status ]($style)[](fg:red)"
+map_symbol = true
+
+[time]
+disabled = false
+time_format = "%H:%M"
+style = "bold fg:subtle bg:surface"
+format = "[](fg:surface)[  $time ]($style)[](fg:surface)"
+
+[battery]
+disabled = false
+full_symbol = "󰁹 "
+charging_symbol = "󰂄 "
+discharging_symbol = "󰂃 "
+unknown_symbol = "󰁽 "
+empty_symbol = "󰂎 "
+format = "[](fg:overlay)[ $symbol$percentage ]($style)[](fg:overlay)"
+
+[[battery.display]]
+threshold = 35
+style = "bold fg:amber bg:overlay"
+
+[[battery.display]]
+threshold = 15
+style = "bold fg:base bg:red"

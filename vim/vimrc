@@ -1,0 +1,17 @@
+packadd comment
+
+" DECSCUSR: block in normal, bar in insert, underline in replace
+let &t_SI = "\e[6 q"
+let &t_SR = "\e[4 q"
+let &t_EI = "\e[2 q"
+let &t_ti .= "\e[2 q"
+let &t_te .= "\e[6 q"
+
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set shiftround
+set autoindent
+set smartindent
+set backspace=indent,eol,start
